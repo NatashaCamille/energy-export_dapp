@@ -16,6 +16,9 @@ function Dashboard({ account, web3 }) {
         // setEnergyConsumed(web3.utils.fromWei(consumed, 'ether'));
       }
     };
+    
+    // Update the Dashboard
+
 
     fetchEnergyData();
   }, [account, web3]);
