@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { Card, CardHeader, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Card, CardHeader, CardContent } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
 
 function Marketplace({ account, web3 }) {
   const [listings, setListings] = useState([]);
@@ -18,7 +18,7 @@ function Marketplace({ account, web3 }) {
         // const fetchedListings = await contract.methods.getAllListings().call();
         // setListings(fetchedListings);
 
-        // Placeholder data for demonstration
+        // Placeholder data for demo
         setListings([
           { id: 1, seller: '0x123...', amount: 100, price: 50 },
           { id: 2, seller: '0x456...', amount: 200, price: 90 },
@@ -39,7 +39,7 @@ function Marketplace({ account, web3 }) {
   }, [account, web3]);
 
   const handlePurchase = async (listingId) => {
-    // Implement purchase logic here
+    // Implementing purchase logic here
    
     // const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
     // await contract.methods.purchaseEnergy(listingId).send({ from: account });
@@ -52,13 +52,25 @@ function Marketplace({ account, web3 }) {
 
   const handleCreateListing = async (e) => {
     e.preventDefault();
-    // Implement create listing logic here
-    
-    // const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
-    // await contract.methods.createListing(newListing.amount, newListing.price).send({ from: account });
-    console.log('Creating new listing:', newListing);
-    // Reset form after submission
-    setNewListing({ amount: '', price: '' });
+    if (newListing.amount && newListing.price) {
+      // Implementing create listing logic here
+      
+      // const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
+      // await contract.methods.createListing(newListing.amount, newListing.price).send({ from: account });
+      
+      // adds the new listing 
+      const newListingObject = {
+        id: listings.length + 1,
+        seller: account || '0xYOUR_ADDRESS...',
+        amount: parseFloat(newListing.amount),
+        price: parseFloat(newListing.price),
+      };
+      setListings([...listings, newListingObject]);
+      
+      console.log('Creating new listing:', newListingObject);
+      // Resets form after submission
+      setNewListing({ amount: '', price: '' });
+    }
   };
 
   return (
