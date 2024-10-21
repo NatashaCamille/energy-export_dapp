@@ -1,8 +1,8 @@
 import React from 'react';
 
 function Dashboard({ account, web3 }) {
-  const [energyProduced, setEnergyProduced] = React.useState(0);
-  const [energyConsumed, setEnergyConsumed] = React.useState(0);
+  const [energyProduced] = React.useState(0);
+  const [energyConsumed] = React.useState(0);
 
   React.useEffect(() => {
     const fetchEnergyData = async () => {
