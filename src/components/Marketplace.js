@@ -4,7 +4,7 @@ import { Card, CardHeader, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 
-function Marketplace({ account, web3 }) {
+const Marketplace = ({ account, web3 }) => {
   const [listings, setListings] = useState([]);
   const [newListing, setNewListing] = useState({ amount: '', price: '' });
   const [energyData, setEnergyData] = useState([]);
@@ -105,6 +105,7 @@ function Marketplace({ account, web3 }) {
       <Card className="mb-6">
         <CardHeader>Energy Production vs Consumption</CardHeader>
         <CardContent>
+           {energyData.length > 0 ? (
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={energyData}>
               <XAxis dataKey="name" />
@@ -114,6 +115,9 @@ function Marketplace({ account, web3 }) {
               <Bar dataKey="consumption" fill="#82ca9d" name="Consumption" />
             </BarChart>
           </ResponsiveContainer>
+           ) : (
+              <p>Loading energy data....</p>
+           )}
         </CardContent>
       </Card>
 
@@ -135,6 +139,6 @@ function Marketplace({ account, web3 }) {
       </div>
     </div>
   );
-}
+};
 
 export default Marketplace;
