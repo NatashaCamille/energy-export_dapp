@@ -1,8 +1,8 @@
 import React from 'react';
 
 function Profile({ account, web3 }) {
-  const [username, setUsername] = React.useState('');
-  const [reputation, setReputation] = React.useState(0);
+  const [username] = React.useState('');
+  const [reputation] = React.useState(0);
 
   React.useEffect(() => {
     const fetchProfileData = async () => {
